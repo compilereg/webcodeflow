@@ -1,0 +1,148 @@
+/* Product tour styles — namespaced under .acpc-tour- so nothing here
+   can collide with app page styles (no CSS Modules / scoping).
+
+   Colors are pulled from the real UI, not invented: #FFC107 gold is
+   Navbar's own timer/notifications-header color; #1c1f26 is its
+   notifications-dropdown background. */
+
+.acpc-tour-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+}
+
+.acpc-tour-band {
+  position: fixed;
+  background: rgba(10, 12, 16, 0.6);
+  pointer-events: auto;
+  transition: all 0.2s ease;
+}
+
+.acpc-tour-spotlight-ring {
+  position: fixed;
+  border: 2px solid #ffc107;
+  border-radius: 10px;
+  box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.25);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acpc-tour-band,
+  .acpc-tour-spotlight-ring {
+    transition: none;
+  }
+}
+
+.acpc-tour-tooltip {
+  position: fixed;
+  z-index: 2147483001;
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  background: #ffffff;
+  color: #1c1f26;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  padding: 18px 20px;
+  font-family: inherit;
+}
+
+.acpc-tour-tooltip:focus {
+  outline: 2px solid #ffc107;
+  outline-offset: 2px;
+}
+
+.acpc-tour-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #b38600;
+  margin-bottom: 6px;
+}
+
+.acpc-tour-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #1c1f26;
+}
+
+.acpc-tour-body {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #444a54;
+  margin: 0 0 16px;
+}
+
+.acpc-tour-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.acpc-tour-skip {
+  background: none;
+  border: none;
+  color: #767c87;
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 6px 4px;
+}
+
+.acpc-tour-skip:hover,
+.acpc-tour-skip:focus-visible {
+  color: #1c1f26;
+  text-decoration: underline;
+}
+
+.acpc-tour-nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.acpc-tour-back {
+  background: none;
+  border: 1px solid #d8dbe0;
+  color: #1c1f26;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.acpc-tour-back:hover {
+  background: #f4f5f6;
+}
+
+.acpc-tour-next {
+  background: #ffc107;
+  border: 1px solid #ffc107;
+  color: #1c1f26;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.acpc-tour-next:hover {
+  background: #e6ac00;
+  border-color: #e6ac00;
+}
+
+.acpc-tour-back:focus-visible,
+.acpc-tour-next:focus-visible,
+.acpc-tour-skip:focus-visible {
+  outline: 2px solid #ffc107;
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .acpc-tour-tooltip {
+    width: calc(100vw - 24px);
+    padding: 14px 16px;
+  }
+}

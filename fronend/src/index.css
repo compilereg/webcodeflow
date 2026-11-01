@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Semantic design tokens for Tailwind utilities (bg-brand, text-foreground, …).
+ * Hex values live in shared/theme/theme.ts and are injected as --wcf-* vars
+ * by installThemeStyles() at app boot. Fallbacks below match the light palette.
+ */
+@theme {
+  --font-sans: "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand: var(--wcf-brand, #2563eb);
+  --color-brand-hover: var(--wcf-brand-hover, #1d4ed8);
+  --color-brand-muted: var(--wcf-brand-muted, #dbeafe);
+
+  --color-surface: var(--wcf-surface, #eef2f7);
+  --color-surface-raised: var(--wcf-surface-raised, #ffffff);
+  --color-surface-sidebar: var(--wcf-surface-sidebar, #ffffff);
+  --color-surface-muted: var(--wcf-surface-muted, #f7f9fc);
+  --color-border: var(--wcf-border, #e6ebf2);
+  --color-border-strong: var(--wcf-border-strong, #d5dde8);
+
+  --color-foreground: var(--wcf-foreground, #0f1b2d);
+  --color-foreground-muted: var(--wcf-foreground-muted, #64748b);
+  --color-foreground-subtle: var(--wcf-foreground-subtle, #94a3b8);
+
+  --color-success: var(--wcf-success, #16a34a);
+  --color-success-muted: var(--wcf-success-muted, #dcfce7);
+  --color-warning: var(--wcf-warning, #d97706);
+  --color-warning-muted: var(--wcf-warning-muted, #fef3c7);
+  --color-danger: var(--wcf-danger, #dc2626);
+  --color-danger-muted: var(--wcf-danger-muted, #fee2e2);
+
+  --color-accent-gold: var(--wcf-accent-gold, #c9a227);
+  --color-accent-gold-deep: var(--wcf-accent-gold-deep, #a8841a);
+  --color-accent-gold-bright: var(--wcf-accent-gold-bright, #e8c547);
+
+  --color-navbar: var(--wcf-navbar, #ffffff);
+  --color-dropzone: var(--wcf-dropzone, #f8fafc);
+  --color-progress-track: var(--wcf-progress-track, #e2e8f0);
+  --color-progress-fill: var(--wcf-progress-fill, #3b82f6);
+
+  --color-scoreboard-first-solve: var(--wcf-scoreboard-first-solve, #166534);
+  --color-scoreboard-first-solve-fg: var(--wcf-scoreboard-first-solve-fg, #ffffff);
+  --color-scoreboard-solved: var(--wcf-scoreboard-solved, #bbf7d0);
+  --color-scoreboard-solved-fg: var(--wcf-scoreboard-solved-fg, #14532d);
+  --color-scoreboard-pending: var(--wcf-scoreboard-pending, #e9d5ff);
+  --color-scoreboard-pending-fg: var(--wcf-scoreboard-pending-fg, #6b21a8);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-surface);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html:not(.dark) {
+    color-scheme: light;
+  }
+
+  /* Soften default 1px rings that still read as “white lines”
+   * on navy cards. Prefer shadow + surface contrast for elevation.
+   * See docs/dark-mode.md.
+   */
+  html.dark :where([class*="ring-1"]) {
+    --tw-ring-color: rgb(255 255 255 / 0.035);
+  }
+
+  code {
+    font-family: var(--font-mono);
+  }
+
+  button {
+    font: inherit;
+  }
+}
